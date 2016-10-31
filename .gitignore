@@ -1,0 +1,133 @@
+int led_0=13;                 
+int led_1=12;                 
+int led_2=11;               
+int led_3=10;                 
+int led_4=9;                  
+int led_5=8;                  
+int led_6=7;                  
+int led_7=6;                  
+int led_8=5;                  
+int led_9=4;                  
+int leds[]={led_0,led_1,led_2,led_3,led_4,led_5,led_6,led_7,led_8,led_9};   
+int sw_1=3;                   
+int sw_2=2;                   
+int sw_3=1;                   
+int cont=0;                   
+int contador=9;               
+int veces=0;                  
+int m;                        
+int n;                        
+
+void setup()
+   {
+    pinMode(sw_1,INPUT);      
+    pinMode(sw_2,INPUT);      
+    pinMode(sw_3,INPUT); 
+    pinMode(led_0,OUTPUT);    
+    pinMode(led_1,OUTPUT);    
+    pinMode(led_2,OUTPUT);    
+    pinMode(led_3,OUTPUT);    
+    pinMode(led_4,OUTPUT);    
+    pinMode(led_5,OUTPUT);    
+    pinMode(led_6,OUTPUT);    
+    pinMode(led_7,OUTPUT);   
+    pinMode(led_8,OUTPUT);   
+    pinMode(led_9,OUTPUT);       
+   }
+void loop() {
+//Condicion 1 ( 0 0 0 )-------------------------------------------------------------------------
+
+  if(digitalRead(sw_1)==LOW&&digitalRead(sw_2)==LOW&&digitalRead(sw_3)==LOW)   //condición 
+    {                                                                          
+      for(cont;cont<=9;cont++)                                                 
+        {                       
+        digitalWrite(leds[cont],LOW);                                           
+        }
+    }
+//Condicion 2 ( 0 1 0 )--------------------------------------------------------------------------
+
+  if(digitalRead(sw_1)==LOW&&digitalRead(sw_2)==HIGH&&digitalRead(sw_3)==LOW)  //condición
+     {
+            for(cont=1;cont<=10;cont)                                          
+         {
+            digitalWrite(leds[cont],HIGH);                                                             
+            delay(300);                                                        
+            digitalWrite(leds[cont],LOW);                                      
+            delay(300);                                                     
+            cont=cont+2;                                                       
+         }
+         cont=0;                                                               
+      }
+//Condicion 3 ( 0 1 1 )-----------------------------------------------------------------------------
+ 
+ if(digitalRead(sw_1)==LOW&&digitalRead(sw_2)==HIGH&&digitalRead(sw_3)==HIGH)  //condición 
+     
+            for(cont=0;cont<=10;cont)                                          
+         {
+            digitalWrite(leds[cont],HIGH);                                     
+            delay(300);                                                        
+            digitalWrite(leds[cont],LOW);                                      
+            delay(300);                                                       
+            cont=cont+2;                                                      
+          cont=0;                                                               
+         }
+
+//Condicion 4 ( 1 0 1 )--------------------------------------------------------------------------------
+
+ if(digitalRead(sw_1)==HIGH&&digitalRead(sw_2)==LOW&&digitalRead(sw_3)==HIGH)  //condición 
+     {
+          for(cont=0;cont<=10;cont)                                            
+         {
+            digitalWrite(leds[cont],HIGH);                                     
+            delay(300);                                                        
+            digitalWrite(leds[cont],LOW);                                      
+            delay(300);                                                        
+            cont=random(0,9);                                                  
+         }
+         cont=0;                                                               
+     }
+
+//Condicion 5 ( 1 1 0 )------------------------------------------------------------------------------------
+
+ if(digitalRead(sw_1)==HIGH&&digitalRead(sw_2)==HIGH&&digitalRead(sw_3)==LOW)  //condición 
+      {
+          contador=9;                                                          
+          for(cont=0;cont<=4;cont++)                                         
+          {
+               digitalWrite(leds[cont],HIGH);                                  
+               digitalWrite(leds[contador],HIGH);                              
+               delay(300);                                                     
+               digitalWrite(leds[cont],LOW);                                   
+               digitalWrite(leds[contador],LOW);                               
+               delay(300);                                                     
+               contador=contador-1;                                            
+          }   
+      }
+//Condicion 6 ( 1 1 1 )--------------------------------------------------------------------------------------
+
+if(digitalRead(sw_1)==HIGH&&digitalRead(sw_2)==HIGH&&digitalRead(sw_3)==HIGH)  //condición 
+     {
+          if(veces<=5)                                                         
+            { 
+               n=5;                                                            
+                for(m=4;m>=0;m--)                                             
+                {
+                  digitalWrite(leds[m],HIGH);                                  
+                  delay(200);                                                  
+                  digitalWrite(leds[n],HIGH);                                  
+                  delay(200);                                                  
+                  n=n+1;                                                      
+                }
+               n=9;                                                          
+                for(m=4;m<=0;m++)                                           
+                {
+                  digitalWrite(leds[m],LOW);                                         
+                  delay(200);                                                 
+                  digitalWrite(leds[n],LOW);                                            
+                  delay(200);                                                  
+                  n=n-1;                                                       
+                }
+            veces=veces+1;                                                     
+               }           
+       }
+}
